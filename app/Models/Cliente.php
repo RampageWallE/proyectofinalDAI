@@ -6,13 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Comentario extends Model
+class Cliente extends Model
 {
     use HasFactory;
-    public function Foto(){
-        return $this->belongsTo(Foto::class);
-    }
-    public function User(){
-        return $this->belongsTo(User::class);
-    }
+    protected $connection = 'mongodb';
+    protected $collection = 'clientes';
 }
