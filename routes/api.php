@@ -17,10 +17,10 @@ Route::controller(ProductController::class)->group(function(){
 });
 
 Route::controller(ClienteController::class)->group(function(){
-    Route::get('/clientes', 'index');
-    Route::post('/cliente', 'new');
-    Route::put('/cliente/{id}', 'update');
-    Route::delete('/cliente/{id}', 'destroy');
+    Route::get('/clientes', 'index')->name('clientes.mostrar');
+    Route::post('/cliente', 'new')->name('cliente.insertar');
+    Route::put('/cliente/{id}', 'update')->name('cliente.actualizar');
+    Route::delete('/cliente/delete/{id}', 'destroy')->name('cliente.eliminar');
 });
 
 Route::controller(FacturaController::class)->group(function(){

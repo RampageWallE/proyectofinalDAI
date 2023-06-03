@@ -17,7 +17,7 @@ class ClienteController extends Controller
     // }
     public function index(){
         $clientes = Cliente::all();
-        return  view('clientes/index', ["cliente"=> $clientes]);
+        return  view('clientes/index', compact('clientes'));
 
 
         // return view('clientes/index', ['clientes'=>$clientes]);
@@ -55,8 +55,10 @@ class ClienteController extends Controller
         return response()->json(['result' => $cliente], Response::HTTP_OK);
 
     }
-    public function destroy($id){
-        Cliente::destroy($id);
+    // public function destroy($id){
+    public function destroy(Cliente $id){
+        $id->delete();
+        // Cliente::destroy($id);
         return response()->json(['message'=>'DELETED or destroyed'], Response::HTTP_OK);
     }
 }

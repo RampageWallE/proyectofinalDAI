@@ -7,55 +7,73 @@
 
     <div class="container my-3">
     <h3>CLIENTES EXISTENTES Y SUS DATOS</h3>  
-
-    <table class="table table-sm">
+    <button class="btn btn-primary"> <a class= "text-white" href="{{route('cliente.insertar')}}">INGRESAR CLIENTE NUEVO</a></button>
+    <table>
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>#</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
                 <th>DNI</th>
-                <th>email</th>
-                <th>Contraseña</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>EMAIL</th>
+                <th>PASSWORD</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
             </tr>
         </thead>
-        
-        <!-- <?php echo $cliente ?>  -->
-
         <tbody>
-            <?php 
-                foreach ($cliente as $user){
-            ?>
-            <tr>
-                <td><?php echo $user->_id ?></td>
-                <td><?php echo $user->nombre ?></td>
-                <td><?php echo $user->apellido ?></td>
-                <td><?php echo $user->dni?></td>
-                <td><?php echo $user->email ?></td>
-                <td><?php echo $user->passwd?></td>
-                <td class="text-center">
-                    <form action="" method="post">
-                        <button class="btn btn-warning">
-                            EDITAR
-                        </button>
-                    </form>
-                </td>
-                <td class="text-center">
-                    <form action="" method="delete">
-                        <button class="btn btn-danger">
-                            ELIMINAR
-                        </button>
-                    </form>
-                </td>
+            @foreach ($clientes as $cliente)
+                <tr>
 
-            </tr>
-            <?php
-            }
-            ?>
+                    <td>                        
+                        {{$cliente->_id;}}
+                    </td>    
+                    <td>                        
+                        {{$cliente->nombre;}}
+                    </td>  
+                    <td>                        
+                        {{$cliente->apellido;}}
+                    </td>  
+                    <td>                        
+                        {{$cliente->dni;}}
+                    </td>  
+                    <td>                        
+                        {{$cliente->email;}}
+                    </td>  
+                    <td>                        
+                        {{$cliente->passwd;}}
+                    </td>  
+                    <td class="text-center">
+                        <form action="" method="POST">
+                            <button class="btn btn-warning">
+                                MODIFICAR                                
+                            </button>
+                        </form>
+                    </td>
+                    <td class="text-center">
+                        <form action="{{route('cliente.eliminar',$cliente->_id)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">
+                                ELIMINAR
+                            </button>   
+                        </form>
+                     
+                    </td>
+                    
+                </tr>  
+            @endforeach
+
+
+         
         </tbody>
+        
     </table>
+
+
+    
+
+
     </div>
     
 @endsection

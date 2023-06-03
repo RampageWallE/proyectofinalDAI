@@ -9,6 +9,8 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Reserva extends Model
 {
     use HasFactory;
+
+    protected $table = "clientes";
     protected $connection = 'mongodb';
     protected $collection = 'reservas';
 }
